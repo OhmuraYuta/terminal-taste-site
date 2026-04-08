@@ -1,0 +1,12 @@
+services:
+  next-app:
+    container_name: terminal-taste-site
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workdir
+      - /workdir/next-app/node_modules
+    restart: always
+    ports:
+      - 3000:3000
