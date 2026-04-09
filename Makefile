@@ -7,5 +7,5 @@ down:
 build:
 	@docker compose build
 
-log:
+logs:
 	@docker compose logs -f -n 1000
