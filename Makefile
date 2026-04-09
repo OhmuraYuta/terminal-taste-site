@@ -9,3 +9,6 @@ build:
 
 logs:
 	@docker compose logs -f -n 1000
+
+exec:
+	@docker compose exec next-app bash
