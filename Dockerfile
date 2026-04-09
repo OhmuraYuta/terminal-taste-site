@@ -15,6 +15,6 @@ WORKDIR /workdir/next-app
 COPY ./next-app/package*.json ./
 RUN npm ci
 
-COPY . .
+COPY . /workdir
 
 CMD ["npm", "run", "dev"]
