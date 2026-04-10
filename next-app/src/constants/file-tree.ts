@@ -5,12 +5,12 @@ const FileTree: File[] = [
     fileType: 'directory',
     name: 'kwus',
     description: 'SEOの対策ツール',
-    parent: 'root',
+    parent: '~',
   },
   {
     fileType: 'directory',
     name: 'youtube-downloader',
     description: 'YouTubeダウンローダー',
-    parent: 'root',
+    parent: '~',
   },
 ] as const;
