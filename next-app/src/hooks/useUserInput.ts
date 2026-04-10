@@ -9,13 +9,7 @@ export default function useUserInput() {
     const handleKeyDown = (event: KeyboardEvent) => {
       const key = event.key;
       // 特殊キーは二文字以上であることを使って排除
-      if (
-        key.length === 1 ||
-        key === 'Tab' ||
-        key === 'ArrowLeft' ||
-        key === 'ArrowRight' ||
-        key === 'Enter'
-      ) {
+      if (key.length === 1 || key === 'Tab' || key === 'Enter') {
         setLastKeys(key);
         setInputString((prev) => {
           return prev + key;
@@ -32,6 +26,23 @@ export default function useUserInput() {
             return 0;
           }
         });
+      } else if (key === 'ArrowLeft') {
+        setCurrentIndex((prev) => {
+          if (prev >= 1) {
+            return prev - 1;
+          } else {
+            return 0;
+          }
+        });
+      } else if (key === 'ArrowRight') {
+        console.log({ inputString });
+        setCurrentIndex((prev) => {
+          if (prev < inputString.length) {
+            return prev + 1;
+          } else {
+            return inputString.length;
+          }
+        });
       }
 
       // 矢印及びスペースでの画面移動を無効化
@@ -46,7 +57,7 @@ export default function useUserInput() {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
+  }, [inputString]);
+  console.log({ inputString });
   return { inputString, currentIndex };
 }
