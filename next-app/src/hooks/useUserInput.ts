@@ -12,7 +12,6 @@ export default function useUserInput() {
       if (
         key.length === 1 ||
         key === 'Tab' ||
-        key === 'Backspace' ||
         key === 'ArrowLeft' ||
         key === 'ArrowRight' ||
         key === 'Enter'
@@ -20,6 +19,18 @@ export default function useUserInput() {
         setLastKeys(key);
         setInputString((prev) => {
           return prev + key;
+        });
+        setCurrentIndex((prev) => prev + 1);
+      } else if (key === 'Backspace') {
+        setInputString((prev) => {
+          return prev.substring(0, prev.length - 1);
+        });
+        setCurrentIndex((prev) => {
+          if (prev >= 1) {
+            return prev - 1;
+          } else {
+            return 0;
+          }
         });
       }
 
@@ -37,5 +48,5 @@ export default function useUserInput() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  return inputString;
+  return { inputString, currentIndex };
 }
