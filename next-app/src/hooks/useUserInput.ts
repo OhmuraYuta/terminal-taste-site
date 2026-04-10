@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 export default function useUserInput() {
-  const [lastKeys, setLastKeys] = useState<string>('');
   const [inputString, setInputString] = useState<string>('');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
@@ -10,7 +9,6 @@ export default function useUserInput() {
       const key = event.key;
       // 特殊キーは二文字以上であることを使って排除
       if (key.length === 1 || key === 'Tab' || key === 'Enter') {
-        setLastKeys(key);
         setInputString((prev) => {
           const firstSegment = prev.substring(0, currentIndex);
           const secondSegment = prev.substring(currentIndex, prev.length);
