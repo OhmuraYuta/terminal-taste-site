@@ -12,7 +12,9 @@ export default function useUserInput() {
       if (key.length === 1 || key === 'Tab' || key === 'Enter') {
         setLastKeys(key);
         setInputString((prev) => {
-          return prev + key;
+          const firstSegment = prev.substring(0, currentIndex);
+          const secondSegment = prev.substring(currentIndex, prev.length);
+          return firstSegment + key + secondSegment;
         });
         setCurrentIndex((prev) => prev + 1);
       } else if (key === 'Backspace') {
