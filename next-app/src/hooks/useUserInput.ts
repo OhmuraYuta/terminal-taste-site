@@ -17,7 +17,9 @@ export default function useUserInput() {
         setCurrentIndex((prev) => prev + 1);
       } else if (key === 'Backspace') {
         setInputString((prev) => {
-          return prev.substring(0, prev.length - 1);
+          const firstSegment = prev.substring(0, currentIndex - 1);
+          const secondSegment = prev.substring(currentIndex, prev.length);
+          return firstSegment + secondSegment;
         });
         setCurrentIndex((prev) => {
           if (prev >= 1) {
@@ -57,7 +59,7 @@ export default function useUserInput() {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [inputString]);
+  }, [inputString, currentIndex]);
   console.log({ inputString });
   return { inputString, currentIndex };
 }
