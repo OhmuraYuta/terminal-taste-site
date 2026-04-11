@@ -3,7 +3,6 @@ import Cursor from './Cursor';
 
 export default function UserInput() {
   const { inputString, currentIndex } = useUserInput();
-  console.log('currentIndex', currentIndex);
 
   return (
     <span>
