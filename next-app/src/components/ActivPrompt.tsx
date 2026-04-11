@@ -1,6 +1,5 @@
 'use client';
 import Prompt from './Prompt';
-import Result from './Result';
 import UserInput from './UserInput';
 
 export default function ActivPrompt() {
@@ -8,7 +7,6 @@ export default function ActivPrompt() {
     <div>
       <Prompt currentDirectory="~" />
       <UserInput />
-      <Result />
     </div>
   );
 }
