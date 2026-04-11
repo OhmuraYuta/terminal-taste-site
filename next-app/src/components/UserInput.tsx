@@ -1,7 +1,7 @@
 import useUserInput from '@/hooks/useUserInput';
 import Cursor from './Cursor';
 
-export default function DisplayUserInput() {
+export default function UserInput() {
   const { inputString, currentIndex } = useUserInput();
   console.log('currentIndex', currentIndex);
 
