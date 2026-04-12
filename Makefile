@@ -12,3 +12,6 @@ logs:
 
 exec:
 	@docker compose exec next-app bash
+
+restart:
+	@docker compose restart
