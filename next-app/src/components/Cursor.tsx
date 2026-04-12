@@ -1,7 +1,7 @@
 export default function Cursor() {
   return (
     <span className="w-[9.6] h-[21.5] inline-block absolute right-[-9.6]">
-      <span className="bg-white! inline-block w-full h-full align-middle"></span>
+      <span className="bg-[#9e9e9e]! inline-block w-full h-full align-middle"></span>
     </span>
   );
 }
