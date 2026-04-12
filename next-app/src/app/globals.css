@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
@@ -23,4 +23,21 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.terminal {
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: white;
+  overflow-y: scroll;
+}
+
+.terminal::-webkit-scrollbar {
+  background-color: #1e1e1e;
+  width: 8px;
+}
+
+.terminal::-webkit-scrollbar-thumb {
+  background-color: #aeaeae;
+  border-radius: 999;
 }
