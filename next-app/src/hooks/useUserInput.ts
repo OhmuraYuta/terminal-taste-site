@@ -49,11 +49,10 @@ export default function useUserInput() {
           }
         });
       } else if (key === 'Enter') {
+        const response = handleCommand(inputString, currentDirectory);
+        setCurrentDirectory(response.currentDirectory);
         setHistory((prev) => {
-          return [
-            ...prev,
-            { currentDirectory, userInput: inputString, result: handleCommand(inputString) },
-          ];
+          return [...prev, { currentDirectory, userInput: inputString, result: response.result }];
         });
         // 初期化
         setInputString('');
