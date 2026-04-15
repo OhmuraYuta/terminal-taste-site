@@ -2,7 +2,6 @@ import ls from './ls';
 
 export default function handleCommand(inputString: string, currentDirectory: string) {
   const command = inputString.split(' ')[0];
-  const arg = inputString.split(' ')[1];
   console.log({ inputString, command });
   let result = '';
   if (command === 'ls') {
