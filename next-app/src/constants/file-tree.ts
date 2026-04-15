@@ -40,4 +40,14 @@ export const FILE_TREE: FileTree = [
       },
     ],
   },
+  {
+    name: 'nazu',
+    inode: 1,
+    content: [],
+  },
+  {
+    name: 'toto',
+    inode: 2,
+    content: [],
+  },
 ];
