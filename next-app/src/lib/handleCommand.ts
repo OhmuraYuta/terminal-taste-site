@@ -6,6 +6,8 @@ export default function handleCommand(inputString: string, currentDirectory: str
   let result = '';
   if (command === 'ls') {
     result = ls(inputString.split(' ')[1], currentDirectory);
+  } else if (!inputString.trim()) {
+    result = '';
   } else {
     result = `${command}: command not found`;
   }
