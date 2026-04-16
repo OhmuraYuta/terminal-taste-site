@@ -16,7 +16,7 @@ export type Directory = {
 export type File = {
   name: string;
   inode: number;
-  content: React.ReactElement;
+  content: string;
 };
 
 export type FileTree = (Directory | File)[];

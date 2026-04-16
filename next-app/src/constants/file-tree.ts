@@ -48,6 +48,6 @@ export const FILE_TREE: FileTree = [
   {
     name: 'toto',
     inode: 2,
-    content: [],
+    content: 'toto_content',
   },
 ];
