@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type FileType = 'file' | 'directory' | 'link';
 
 export type DirectoryContent = {
@@ -8,12 +6,14 @@ export type DirectoryContent = {
 };
 
 export type Directory = {
+  type: 'directory';
   name: string;
   inode: number;
   content: DirectoryContent[];
 };
 
 export type File = {
+  type: 'file';
   name: string;
   inode: number;
   content: string;
