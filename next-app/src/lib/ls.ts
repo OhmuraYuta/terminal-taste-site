@@ -1,8 +1,7 @@
 import { FILE_TREE } from '@/constants/file-tree';
 import type { DirectoryContent } from '@/types/file-tree';
-import React from 'react';
 
-type ChildDirs = DirectoryContent[] | React.ReactElement;
+type ChildDirs = DirectoryContent[] | string;
 
 export default function ls(arg: string, currentDirectory: string): string {
   let path = '';
@@ -12,8 +11,9 @@ export default function ls(arg: string, currentDirectory: string): string {
     path = currentDirectory;
   }
   const info = getInfoFromPath(path);
-  console.log(info);
-  if (Array.isArray(info?.childDirs)) {
+  if (info?.fileName) {
+    return info.fileName;
+  } else if (Array.isArray(info?.childDirs)) {
     const result = info.childDirs.map((dir) => {
       return dir.name;
     });
@@ -23,12 +23,10 @@ export default function ls(arg: string, currentDirectory: string): string {
 }
 
 function getInfoFromPath(path: string) {
-  console.log(path);
   if (path === '~') {
     path += '/';
   }
   const pathArray = path.split('/');
-  console.log(pathArray);
   if (pathArray[pathArray.length - 1] === '') {
     pathArray.splice(pathArray.length - 1, 1);
   }
@@ -48,14 +46,14 @@ function getInfoFromPath(path: string) {
     }
     dotDotIndex = pathArray.indexOf('..');
   }
-  console.log(pathArray);
 
   // rootのinode
   let inode = 5;
   let childDirs: ChildDirs = [];
+  let fileName = '';
   for (let i = 0; i < pathArray.length; i++) {
     // 初回はrootのcontent取得
-    if (i === 0) {
+    if (i === 0 && Array.isArray(FILE_TREE[0].content)) {
       childDirs = FILE_TREE[0].content;
       continue;
     }
@@ -69,6 +67,10 @@ function getInfoFromPath(path: string) {
           if (dir.inode === inode && Array.isArray(dir.content)) {
             childDirs = dir.content;
             break;
+          } else if (dir.inode === inode && typeof dir.content === 'string') {
+            fileName = dir.name;
+            childDirs = [];
+            break;
           }
         }
         break;
@@ -78,5 +80,5 @@ function getInfoFromPath(path: string) {
       }
     }
   }
-  return { inode, childDirs };
+  return { inode, childDirs, fileName };
 }
