@@ -1,4 +1,5 @@
 import ls from './ls';
+import cd from './cd';
 
 export default function handleCommand(inputString: string, currentDirectory: string) {
   const command = inputString.split(' ')[0];
@@ -6,6 +7,13 @@ export default function handleCommand(inputString: string, currentDirectory: str
   let result = '';
   if (command === 'ls') {
     result = ls(inputString.split(' ')[1], currentDirectory);
+  } else if (command === 'cd') {
+    const res = cd(inputString.split(' ')[1], currentDirectory);
+    if (res.type === 'success') {
+      currentDirectory = res.currentDirectory;
+    } else {
+      result = res.errorMsg;
+    }
   } else if (!inputString.trim()) {
     result = '';
   } else {
