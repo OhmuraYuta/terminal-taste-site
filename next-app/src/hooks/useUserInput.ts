@@ -69,6 +69,6 @@ export default function useUserInput() {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [inputString, currentIndex]);
-  return { inputString, currentIndex, history };
+  }, [inputString, currentIndex, currentDirectory]);
+  return { inputString, currentIndex, history, currentDirectory };
 }
