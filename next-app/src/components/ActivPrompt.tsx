@@ -6,13 +6,13 @@ import useUserInput from '@/hooks/useUserInput';
 
 export default function ActivPrompt() {
   const scrollBottomRef = useRef<HTMLDivElement>(null);
-  const { history } = useUserInput();
+  const { history, currentDirectory } = useUserInput();
   useEffect(() => {
     scrollBottomRef.current?.scrollIntoView({ behavior: 'instant' });
   }, [history]);
   return (
     <div ref={scrollBottomRef}>
-      <Prompt currentDirectory="~" />
+      <Prompt currentDirectory={currentDirectory} />
       <UserInput />
     </div>
   );
