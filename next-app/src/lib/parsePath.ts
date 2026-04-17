@@ -5,6 +5,7 @@ type Res =
   | {
       type: 'dirctory';
       childDirs: string[];
+      path: string;
     }
   | {
       type: 'file';
@@ -80,5 +81,5 @@ export default function parsePath(path: string): Res {
     }
   }
   const resChildDirs = childDirs.map((dir) => dir.name);
-  return { type: 'dirctory', childDirs: resChildDirs };
+  return { type: 'dirctory', childDirs: resChildDirs, path: pathArray.join('/') };
 }
