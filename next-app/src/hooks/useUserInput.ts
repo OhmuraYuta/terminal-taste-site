@@ -52,7 +52,15 @@ export default function useUserInput() {
         const response = handleCommand(inputString, currentDirectory);
         setCurrentDirectory(response.currentDirectory);
         setHistory((prev) => {
-          return [...prev, { currentDirectory, userInput: inputString, result: response.result }];
+          return [
+            ...prev,
+            {
+              currentDirectory,
+              userInput: inputString,
+              result: response.result,
+              isContent: response.isContent,
+            },
+          ];
         });
         // 初期化
         setInputString('');
