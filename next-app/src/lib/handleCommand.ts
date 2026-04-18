@@ -1,5 +1,6 @@
 import ls from './ls';
 import cd from './cd';
+import cat from './cat';
 
 export default function handleCommand(inputString: string, currentDirectory: string) {
   const command = inputString.split(' ')[0];
@@ -14,6 +15,9 @@ export default function handleCommand(inputString: string, currentDirectory: str
     } else {
       result = res.errorMsg;
     }
+  } else if (command === 'cat') {
+    const res = cat(inputString.split(' ')[1], currentDirectory);
+    return { result: res.result, currentDirectory, isContent: res.isContent };
   } else if (!inputString.trim()) {
     result = '';
   } else {
