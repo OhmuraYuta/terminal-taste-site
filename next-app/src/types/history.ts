@@ -1,7 +1,7 @@
 type LsResult = {
   type: 'directory' | 'file';
   name: string;
-};
+}[];
 
 export type History = (
   | {
