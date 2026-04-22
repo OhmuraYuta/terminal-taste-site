@@ -1,6 +1,7 @@
 export type FileType = 'file' | 'directory' | 'link';
 
 export type DirectoryContent = {
+  type: FileType;
   name: string;
   inode: number;
 };
