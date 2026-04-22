@@ -1,10 +1,11 @@
 import { FILE_TREE } from '@/constants/file-tree';
 import type { DirectoryContent } from '@/types/file-tree';
+import type { LsResult } from '@/types/history';
 
 type Res =
   | {
       type: 'dirctory';
-      childDirs: string[];
+      childDirs: LsResult;
       path: string;
     }
   | {
@@ -40,7 +41,7 @@ export default function parsePath(path: string): Res {
   }
 
   let childDirs: DirectoryContent[] = [];
-  let inode = 5; // root
+  let inode = 0; // root
   for (let path_i = 0; path_i < pathArray.length; path_i++) {
     if (path_i === 0) {
       // 初回はrootのchildDirsを取得
@@ -80,6 +81,11 @@ export default function parsePath(path: string): Res {
       }
     }
   }
-  const resChildDirs = childDirs.map((dir) => dir.name);
+  const resChildDirs = childDirs.map((dir) => {
+    return {
+      type: dir.type,
+      name: dir.name,
+    };
+  });
   return { type: 'dirctory', childDirs: resChildDirs, path: pathArray.join('/') };
 }
