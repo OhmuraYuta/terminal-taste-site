@@ -1,5 +1,7 @@
-type LsResult = {
-  type: 'directory' | 'file';
+import type { FileType } from './file-tree';
+
+export type LsResult = {
+  type: FileType;
   name: string;
 }[];
 
