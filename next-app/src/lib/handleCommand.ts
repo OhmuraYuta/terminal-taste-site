@@ -6,8 +6,10 @@ export default function handleCommand(inputString: string, currentDirectory: str
   const command = inputString.split(' ')[0];
   console.log({ inputString, command });
   let result = '';
+  const type = 'normal';
   if (command === 'ls') {
-    result = ls(inputString.split(' ')[1], currentDirectory);
+    const res = ls(inputString.split(' ')[1], currentDirectory);
+    return { type: res.type, result: res.result, currentDirectory };
   } else if (command === 'cd') {
     const res = cd(inputString.split(' ')[1], currentDirectory);
     if (res.type === 'success') {
@@ -23,5 +25,5 @@ export default function handleCommand(inputString: string, currentDirectory: str
   } else {
     result = `${command}: command not found`;
   }
-  return { result, currentDirectory };
+  return { result, currentDirectory, type };
 }
