@@ -1,3 +1,3 @@
 export default function NewsREADME() {
-  return <h1>ニュース取得アシスタントAI &quottook&quot</h1>;
+  return <h1>ニュース取得アシスタントAI &quot;took&quot;</h1>;
 }
