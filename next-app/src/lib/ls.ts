@@ -1,6 +1,17 @@
 import parsePath from './parsePath';
+import type { LsResult } from '@/types/history';
 
-export default function ls(arg: string, currentDirectory: string): string {
+type Res =
+  | {
+      type: 'normal';
+      result: string;
+    }
+  | {
+      type: 'ls';
+      result: LsResult;
+    };
+
+export default function ls(arg: string, currentDirectory: string): Res {
   let path = '';
   if (arg && arg.startsWith('~')) {
     path = arg;
@@ -11,9 +22,9 @@ export default function ls(arg: string, currentDirectory: string): string {
   }
   const res = parsePath(path);
   if (res.type === 'file') {
-    return res.name;
+    return { type: 'ls', result: [{ type: 'file', name: res.name }] };
   } else if (res.type === 'dirctory') {
-    return res.childDirs.join(' ');
+    return { type: 'ls', result: res.childDirs };
   }
-  return `ls: cannot access '${arg}': No such file or directory`;
+  return { type: 'normal', result: `ls: cannot access '${arg}': No such file or directory` };
 }
