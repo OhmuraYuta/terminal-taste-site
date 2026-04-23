@@ -3,6 +3,7 @@ import React from 'react';
 
 const ComponentMap: { [key: string]: React.ComponentType } = {
   toto_content: dynamic(() => import('./Toto').then((mod) => mod.default)),
+  newsREADME: dynamic(() => import('./NewsREADME').then((mod) => mod.default)),
 };
 
 export default function Content({ content }: { content: string }) {
