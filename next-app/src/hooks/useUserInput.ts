@@ -55,10 +55,10 @@ export default function useUserInput() {
           return [
             ...prev,
             {
+              type: response.type,
               currentDirectory,
               userInput: inputString,
               result: response.result,
-              isContent: response.isContent,
             },
           ];
         });
