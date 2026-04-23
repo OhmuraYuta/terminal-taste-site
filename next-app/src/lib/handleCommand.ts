@@ -19,7 +19,7 @@ export default function handleCommand(inputString: string, currentDirectory: str
     }
   } else if (command === 'cat') {
     const res = cat(inputString.split(' ')[1], currentDirectory);
-    return { result: res.result, currentDirectory, isContent: res.isContent };
+    return { result: res.result, currentDirectory, type: res.type };
   } else if (!inputString.trim()) {
     result = '';
   } else {
