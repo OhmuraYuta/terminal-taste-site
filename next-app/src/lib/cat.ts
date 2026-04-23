@@ -1,7 +1,7 @@
 import parsePath from './parsePath';
 
 type Res = {
-  isContent: boolean;
+  type: 'normal' | 'content';
   result: string;
 };
 
@@ -16,9 +16,9 @@ export default function cat(arg: string, currentDirectory: string): Res {
   }
   const res = parsePath(path);
   if (res.type === 'dirctory') {
-    return { isContent: false, result: `cat: ${arg}: Is a directory` };
+    return { type: 'normal', result: `cat: ${arg}: Is a directory` };
   } else if (res.type === 'file') {
-    return { isContent: true, result: res.content };
+    return { type: 'content', result: res.content };
   }
-  return { isContent: false, result: `cat: ${arg}: No such file or directory` };
+  return { type: 'normal', result: `cat: ${arg}: No such file or directory` };
 }
