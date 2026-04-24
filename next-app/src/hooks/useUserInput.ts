@@ -51,17 +51,31 @@ export default function useUserInput() {
       } else if (key === 'Enter') {
         const response = handleCommand(inputString, currentDirectory);
         setCurrentDirectory(response.currentDirectory);
-        setHistory((prev) => {
-          return [
-            ...prev,
-            {
-              type: response.type,
-              currentDirectory,
-              userInput: inputString,
-              result: response.result,
-            },
-          ];
-        });
+        if (response.type === 'normal' || response.type === 'content') {
+          setHistory((prev) => {
+            return [
+              ...prev,
+              {
+                type: response.type,
+                currentDirectory,
+                userInput: inputString,
+                result: response.result,
+              },
+            ];
+          });
+        } else if (response.type === 'ls') {
+          setHistory((prev) => {
+            return [
+              ...prev,
+              {
+                type: response.type,
+                currentDirectory,
+                userInput: inputString,
+                result: response.result,
+              },
+            ];
+          });
+        }
         // 初期化
         setInputString('');
         setCurrentIndex(0);
