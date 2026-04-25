@@ -6,7 +6,7 @@ const robotoMono = Roboto_Mono();
 
 export default function Terminal() {
   return (
-    <div className={`${robotoMono.className} terminal`}>
+    <div className={`${robotoMono.className} terminal px-2`}>
       <History />
       <ActivPrompt />
     </div>
